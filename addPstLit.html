@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+   
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-analytics.js"></script>
+    <link href="Dashbord.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="jquery.min.js"></script>
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <title>Checkout example for Bootstrap</title>
+    <script defer="" src="solid.js.download" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer="" src="fontawesome.js.download" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="AddnewSubjectDB.css" rel="stylesheet">
+  </head>
+<style>
+  .content{
+    background: #fff;
+    max-width: 960px;
+    margin: 30px auto;
+    padding:  20px 55px;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 1px 3px 5px rgba(0,0,0,0.4)
+}
+table {
+  width:100%;
+}
+table, th, td {
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+table tr:nth-child(even) {
+  background-color: white;
+}
+table tr:nth-child(odd) {
+ background-color: white;
+}
+table th {
+  background-color: black;
+  color: white;
+}   
+
+</style>
+  <body class="bg-light">
+    <nav  style="background-color:#9A12B3; position: fixed; height: 1080px; top:0px;"  id="sidebar" class="">
+            
+      <div style="background-color: #9A12B3; margin-top:0px;" class="sidebar-header ">
+          <img src="logo.png"  width="60px" style="margin-left: -15px; margin-top: -14px; position: fixed;" alt="logo" />
+          <h3 style="margin-left: 60px;">AXILEARN  </h3> 
+         
+      </div>
+
+      <ul class="list-unstyled components">
+          <p></p>
+          <li >
+              <a style="color: white;" href="DASHBROD.html"><i class="fa fa-home"></i>  Home</a>
+          </li>
+          <li>
+              <a style="color: white;" href="AboutX.html"><i class="fa fa-users" aria-hidden="true"></i>  About</a>
+             
+          </li>
+          <li>
+              <a style="color: white;" href="NetWorkReport.html"><i class="fa fa-rss-square" aria-hidden="true"></i> Network report</a>
+          </li>
+          <li>
+              <a style="color: white;" href="ContactX.html"><i class="fa fa-phone-square" aria-hidden="true"></i>  Contact</a>
+          </li>
+      </ul>
+
+      <ul class="list-unstyled CTAs">
+          <li>
+              <a style="color: black;" href="index.html" class="download">Sign out</a>
+          </li>
+          
+      </ul>
+  </nav>
+
+
+    <div class="container">
+      <div class="py-5 text-center">
+      
+        <h2>Add/Remove new past paper to literature</h2>
+        <p class="lead">Here you can add new past paper or remove to database before add the past paper fill the ditails related to past paper later that members can access the past papers</p>
+      </div>
+
+      
+      <div style=" margin-left: 600px; max-width: 1500px; position: absolute;">
+        <table id="tbl_users_list"  >
+            <tr>
+              <td><b>Index</b></td>
+              <td><b>Year of paper</b></td>
+
+            
+            </tr>
+            </table>
+            
+      </div>
+    </div>
+              
+       
+
+        </div>
+        <div style="margin-left: 300px; max-width: 400px;margin-top: -35px;">
+          <h4 class="mb-3">past paper  detail form to Add</h4>
+          <div class="input-group">
+            <input id="SubjctIndex" type="text" class="form-control" placeholder="Enter past paper  Index">
+ 
+          </div><br>
+          <input id="topicname" type="text" class="form-control" placeholder="Enter Year of paper"><br>
+          <input id="webUrlText" type="text" class="form-control" placeholder="Paste paper webUrl">
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block" style="max-width: 250px; margin-left: 450px; margin-top: 40px;" id="subbtn" onclick="addSubject();" >Add Topic</button>
+    <div style="margin-left: 300px; max-width: 400px;margin-top: 35px;">
+        <h4 class="mb-3">past paper  detail form to Delete</h4>
+        <div class="input-group">
+          <input id="SubjctIndexDelete" type="text" class="form-control" placeholder="Enter subject Index">
+
+        </div>
+  </div>
+
+  <button class="btn btn-lg btn-primary btn-block" style="max-width: 250px; margin-left: 450px;background-color: red; margin-top: 40px;"  id="removeBtn" >Remove Topic</button>
+  
+   
+
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-database.js"></script>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="jquery-slim.min.js"><\/script>')</script>
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="holder.min.js"></script>
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    // Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyD6xHZL-JydpDai1TiwJGALEmb7BcZh-fc",
+    authDomain: "axilearnv1.firebaseapp.com",
+    databaseURL: "https://axilearnv1.firebaseio.com",
+    projectId: "axilearnv1",
+    storageBucket: "axilearnv1.appspot.com",
+    messagingSenderId: "102666534508",
+    appId: "1:102666534508:web:0f4e8eed826ad98b48a249"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  var database = firebase.database();   
+  const rootRef = database.ref('pastpaper/literature/literaturepastpaper');
+ 
+
+function addSubject(){
+if(SubjctIndex.value==""){
+
+}else{
+    rootRef.child(SubjctIndex.value).set({
+        id: SubjctIndex.value-1,
+        name: topicname.value,
+        searchIndex:topicname.value,
+        imageLink: "img1.jpg",
+        webUrl: webUrlText.value
+                
+      })
+
+      .then(() =>{
+          window.alert('Database will update  so soon.');
+          location.reload();
+         
+      })
+}
+  
+
+}
+
+var tblUsers=document.getElementById('tbl_users_list');
+  var rowIndex = 1;
+    
+  rootRef.once('value', function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+    var childKey = childSnapshot.key;
+    var childData = childSnapshot.val();
+    
+
+    var row = tblUsers.insertRow(rowIndex);
+    var cellId = row.insertCell(0);
+    var cellName = row.insertCell(1);
+   
+    cellId.appendChild(document.createTextNode(childKey));
+    cellName.appendChild(document.createTextNode(childData.name));
+    
+
+    rowIndex= rowIndex + 1;
+    
+  });
+});
+
+removeBtn.addEventListener('click',e =>{
+      e.preventDefault();
+      rootRef.child(SubjctIndexDelete.value).remove()
+      
+      .then(() =>{
+        window.alert('Database will update soon.');
+          location.reload();
+      })
+      .catch(error => {
+   console.error(error);
+  });
+
+  });
+
+
+    </script>
+  </body>
+</html>

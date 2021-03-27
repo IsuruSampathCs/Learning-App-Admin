@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+   
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-analytics.js"></script>
+    <link href="Dashbord.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="jquery.min.js"></script>
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <title>Checkout example for Bootstrap</title>
+    <script defer="" src="solid.js.download" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer="" src="fontawesome.js.download" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="AddnewSubjectDB.css" rel="stylesheet">
+  </head>
+<style>
+  .content{
+    background: #fff;
+    max-width: 960px;
+    margin: 30px auto;
+    padding:  20px 55px;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 1px 3px 5px rgba(0,0,0,0.4)
+}
+table {
+  width:100%;
+}
+table, th, td {
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+table tr:nth-child(even) {
+  background-color: white;
+}
+table tr:nth-child(odd) {
+ background-color: white;
+}
+table th {
+  background-color: black;
+  color: white;
+}   
+
+</style>
+  <body class="bg-light">
+    <nav  style="background-color:#9A12B3; position: fixed; height: 1080px; top:0px;"  id="sidebar" class="">
+            
+      <div style="background-color: #9A12B3; margin-top:0px;" class="sidebar-header ">
+          <img src="logo.png"  width="60px" style="margin-left: -15px; margin-top: -14px; position: fixed;" alt="logo" />
+          <h3 style="margin-left: 60px;">AXILEARN  </h3> 
+         
+      </div>
+
+      <ul class="list-unstyled components">
+          <p></p>
+          <li >
+              <a style="color: white;" href="DASHBROD.html"><i class="fa fa-home"></i>  Home</a>
+          </li>
+          <li>
+              <a style="color: white;" href="AboutX.html"><i class="fa fa-users" aria-hidden="true"></i>  About</a>
+             
+          </li>
+          <li>
+              <a style="color: white;" href="NetWorkReport.html"><i class="fa fa-rss-square" aria-hidden="true"></i> Network report</a>
+          </li>
+          <li>
+              <a style="color: white;" href="ContactX.html"><i class="fa fa-phone-square" aria-hidden="true"></i>  Contact</a>
+          </li>
+      </ul>
+
+      <ul class="list-unstyled CTAs">
+          <li>
+              <a style="color: black;" href="index.html" class="download">Sign out</a>
+          </li>
+          
+      </ul>
+  </nav>
+
+    <div class="container">
+      <div class="py-5 text-center">
+      
+        <h2>Add/Remove new question to Science</h2>
+        <p class="lead">Here you can add new question or remove to database before add the question fill the ditails related to question later that members can access the question with quiz programme.</p>
+      </div>
+
+      
+      <div style=" margin-left: 500px; max-width: 700px; position: absolute;">
+        <table id="tbl_users_list"  >
+            <tr>
+              <td><b>Index</b></td>
+              <td><b><center>Question</center></b></td>
+
+            
+            </tr>
+            </table>
+            
+      </div>
+    </div>
+              
+       
+
+        </div>
+        <div style="margin-left: 300px; max-width: 400px;margin-top: -35px;">
+          <h4 class="mb-3">question detail form to Add</h4>
+          <div class="input-group">
+            <textarea id="questionArea"  class="form-control" placeholder="Enter new question"></textarea>
+ 
+          </div><br>
+          <input id="questionIndex" type="text" class="form-control" placeholder="Enter  Index"><br>
+          <input id="option1" type="text" class="form-control" placeholder="Enter option 01"><br>
+          <input id="option2" type="text" class="form-control" placeholder="Enter option 02"><br>
+          <input id="option3" type="text" class="form-control" placeholder="Enter option 03"><br>
+          <input id="option4" type="text" class="form-control" placeholder="Enter option 04"><br>
+          
+          <p style="color: black;"> paste the correct answer</p>
+          <input id="answerArea" type="text" class="form-control" placeholder="Enter answer"><br>
+          
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block" style="max-width: 250px; margin-left: 450px; margin-top: 40px;" id="subbtn" onclick="addSubject();" >Add Question</button>
+    <div style="margin-left: 300px; max-width: 400px;margin-top: 35px;">
+        <h4 class="mb-3">question detail form to Delete</h4>
+        <div class="input-group">
+            <input id="SubjctIndexDelete" type="text" class="form-control" placeholder="Enter subject Index">
+
+        </div>
+  </div>
+
+  <button class="btn btn-lg btn-primary btn-block" style="max-width: 250px; margin-left: 450px;background-color: red; margin-top: 40px;"  id="removeBtn" >Remove Question</button>
+  
+   
+
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-database.js"></script>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="jquery-slim.min.js"><\/script>')</script>
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="holder.min.js"></script>
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    // Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyD6xHZL-JydpDai1TiwJGALEmb7BcZh-fc",
+    authDomain: "axilearnv1.firebaseapp.com",
+    databaseURL: "https://axilearnv1.firebaseio.com",
+    projectId: "axilearnv1",
+    storageBucket: "axilearnv1.appspot.com",
+    messagingSenderId: "102666534508",
+    appId: "1:102666534508:web:0f4e8eed826ad98b48a249"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  var database = firebase.database();   
+  const rootRef = database.ref('quiz/science/Questions');
+ 
+
+function addSubject(){
+    if(answerArea.value==""){
+  window.alert('Answer is not entered')
+}
+if(questionArea.value==""){
+    window.alert('Qestion is not entered')
+}
+if(questionIndex.value==""){
+    window.alert('Index is not entered')
+}
+else if(answerArea.value==option1.value || answerArea.value==option2.value || answerArea.value==option3.value  ||answerArea.value==option4.value )
+{
+
+if(option1.value==option2.value)
+{
+    window.alert('Option 01 and 02 is same answer!') 
+}
+else if(option1.value==option3.value){
+    window.alert('Option 01 and 03 is same answer!') 
+}
+else if(option1.value==option4.value){
+    window.alert('Option 01 and 04 is same answer!') 
+}
+else if(option2.value==option3.value){
+    window.alert('Option 02 and 03 is same answer!') 
+}
+else if(option2.value==option4.value){
+    window.alert('Option 02 and 04 is same answer!') 
+}
+else if(option3.value==option4.value){
+    window.alert('Option 03 and 04 is same answer!') 
+}
+else{
+
+    rootRef.child(questionIndex.value).set({
+        answer:answerArea.value,
+        option1:option1.value,
+        option2:option2.value,
+        option3:option3.value,
+        option4:option4.value,
+        question:questionArea.value
+        
+                
+      })
+
+      .then(() =>{
+          window.alert('Database will update  so soon.');
+          location.reload();
+         
+      })
+}
+
+
+
+
+
+
+}
+else{
+    window.alert("Answer is not in option enterd please chack again!")
+    document.getElementById("answerArea").style.color = "red";
+}
+
+
+
+
+    
+}
+
+var tblUsers=document.getElementById('tbl_users_list');
+  var rowIndex = 1;
+    
+  rootRef.once('value', function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+    var childKey = childSnapshot.key;
+    var childData = childSnapshot.val();
+    
+
+    var row = tblUsers.insertRow(rowIndex);
+    var cellId = row.insertCell(0);
+    var cellName = row.insertCell(1);
+   
+    cellId.appendChild(document.createTextNode(childKey));
+    cellName.appendChild(document.createTextNode(childData.question));
+    
+
+    rowIndex= rowIndex + 1;
+    
+  });
+});
+
+removeBtn.addEventListener('click',e =>{
+      e.preventDefault();
+      rootRef.child(SubjctIndexDelete.value).remove()
+      
+      .then(() =>{
+        window.alert('Database will update soon.');
+          location.reload();
+      })
+      .catch(error => {
+   console.error(error);
+  });
+
+  });
+
+
+    </script>
+  </body>
+</html>

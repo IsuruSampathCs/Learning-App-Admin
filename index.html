@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <title>Floating labels example for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="floating-labels.css" rel="stylesheet">
+  </head>
+
+  <body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/7.15.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
+
+    <form class="form-signin">
+      <div class="text-center mb-4">
+        <img class="mb-4" src="logo.png" alt="" width="120" height="120">
+        <h1 class="h3 mb-3 font-weight-normal">AXILEARN</h1>
+        <p style="color: aliceblue;">Test form controls with floating labels via the pseudo element.Almost before we knew it, we had left the ground. <a href="https://caniuse.com/#feat=css-placeholder-shown" style="color: black;">Works in latest Chrome, Safari, and Firefox.</a></p>
+      </div>
+
+     
+
+      <div class="form-label-group">
+        <input type="text" id="userid" class="form-control" >
+  <label for="inputEmail">Password</label>
+      </div>
+
+    
+<button class="btn btn-lg btn-primary btn-block" id="removeBtn" onclick="loging();">Login</button>
+      <p class="mt-5 mb-3 text-muted text-center">All rights reserved by AXILEARN</p>
+    </form>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-firestore.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyD6xHZL-JydpDai1TiwJGALEmb7BcZh-fc",
+    authDomain: "axilearnv1.firebaseapp.com",
+    databaseURL: "https://axilearnv1.firebaseio.com",
+    projectId: "axilearnv1",
+    storageBucket: "axilearnv1.appspot.com",
+    messagingSenderId: "102666534508",
+    appId: "1:102666534508:web:81bbfd429078407f48a249"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore(); 
+ 
+ 
+
+
+function loging(){
+  var pass=userid.value;
+  if(pass=="abcd"){
+    
+window.open("DASHBROD.html");
+  }
+  else{
+  
+    window.alert('please check pin again');
+  }
+}
+
+
+
+
+</script>
+
+  </body>
+</html>
